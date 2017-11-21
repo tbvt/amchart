@@ -1,0 +1,992 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>amcharts</title>
+
+    <style>
+
+        body{
+            margin: 0;
+            padding: 0;
+            background-color: #f4f6f7bf;
+        }
+
+        .wrapper{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            width: 100vw;
+        }
+
+        .chart-wrapper{
+            background: #fff;
+            padding: 10px;
+            border: 1px solid #e2e6ea;
+            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.05)
+        }
+
+        #chartdiv {
+            width: 980px;
+            height: 250px;
+        }
+    </style>
+</head>
+<body>
+
+
+<div class="wrapper">
+    <div class="chart-wrapper">
+        <div id="chartdiv"></div>
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.19.2/moment.min.js"></script>
+<script src="//code.angularjs.org/1.4.0/angular.js"></script>
+<script src="//www.amcharts.com/lib/3/amcharts.js"></script>
+<script src="//www.amcharts.com/lib/3/serial.js"></script>
+<script src="//www.amcharts.com/lib/3/themes/light.js"></script>
+<script src="//www.amcharts.com/lib/3/plugins/dataloader/dataloader.min.js"></script>
+<script src="//www.amcharts.com/lib/3/maps/js/worldLow.js"></script>
+
+
+<script>
+    window.onload = function () {
+
+
+        var items = [{
+            "date": "2017-11-11T21:00:00.000Z",
+            "dateGroup": "hour",
+            "viewsAll": 0,
+            "viewsNotIgnored": 0,
+            "clicksPayable": 1,
+            "clicksPayableNotIgnored": 1,
+            "ctr": 0,
+            "userExpenses": 3
+        }, {
+            "date": "2017-11-11T22:00:00.000Z",
+            "dateGroup": "hour",
+            "viewsNotIgnored": 0,
+            "clicksPayable": 0,
+            "clicksPayableNotIgnored": 0,
+            "earnings": 0,
+            "ctr": 0,
+            "expenses": 0
+        }, {
+            "date": "2017-11-11T23:00:00.000Z",
+            "dateGroup": "hour",
+            "viewsNotIgnored": 0,
+            "clicksPayable": 0,
+            "clicksPayableNotIgnored": 0,
+            "earnings": 0,
+            "ctr": 0,
+            "expenses": 0
+        }, {
+            "date": "2017-11-12T00:00:00.000Z",
+            "dateGroup": "hour",
+            "viewsNotIgnored": 0,
+            "clicksPayable": 0,
+            "clicksPayableNotIgnored": 0,
+            "earnings": 0,
+            "ctr": 0,
+            "expenses": 0
+        }, {
+            "date": "2017-11-12T01:00:00.000Z",
+            "dateGroup": "hour",
+            "viewsNotIgnored": 0,
+            "clicksPayable": 0,
+            "clicksPayableNotIgnored": 0,
+            "earnings": 0,
+            "ctr": 0,
+            "expenses": 0
+        }, {
+            "date": "2017-11-12T02:00:00.000Z",
+            "dateGroup": "hour",
+            "viewsNotIgnored": 0,
+            "clicksPayable": 0,
+            "clicksPayableNotIgnored": 0,
+            "earnings": 0,
+            "ctr": 0,
+            "expenses": 0
+        }, {
+            "date": "2017-11-12T03:00:00.000Z",
+            "dateGroup": "hour",
+            "viewsNotIgnored": 0,
+            "clicksPayable": 0,
+            "clicksPayableNotIgnored": 0,
+            "earnings": 0,
+            "ctr": 0,
+            "expenses": 0
+        }, {
+            "date": "2017-11-12T04:00:00.000Z",
+            "dateGroup": "hour",
+            "viewsNotIgnored": 0,
+            "clicksPayable": 0,
+            "clicksPayableNotIgnored": 0,
+            "earnings": 0,
+            "ctr": 0,
+            "expenses": 0
+        }, {
+            "date": "2017-11-12T05:00:00.000Z",
+            "dateGroup": "hour",
+            "viewsNotIgnored": 0,
+            "clicksPayable": 0,
+            "clicksPayableNotIgnored": 0,
+            "earnings": 0,
+            "ctr": 0,
+            "expenses": 0
+        }, {
+            "date": "2017-11-12T06:00:00.000Z",
+            "dateGroup": "hour",
+            "viewsNotIgnored": 0,
+            "clicksPayable": 0,
+            "clicksPayableNotIgnored": 0,
+            "earnings": 0,
+            "ctr": 0,
+            "expenses": 0
+        }, {
+            "date": "2017-11-12T07:00:00.000Z",
+            "dateGroup": "hour",
+            "viewsNotIgnored": 0,
+            "clicksPayable": 0,
+            "clicksPayableNotIgnored": 0,
+            "earnings": 0,
+            "ctr": 0,
+            "expenses": 0
+        }, {
+            "date": "2017-11-12T08:00:00.000Z",
+            "dateGroup": "hour",
+            "viewsNotIgnored": 0,
+            "clicksPayable": 0,
+            "clicksPayableNotIgnored": 0,
+            "earnings": 0,
+            "ctr": 0,
+            "expenses": 0
+        }, {
+            "date": "2017-11-12T09:00:00.000Z",
+            "dateGroup": "hour",
+            "viewsNotIgnored": 0,
+            "clicksPayable": 0,
+            "clicksPayableNotIgnored": 0,
+            "earnings": 0,
+            "ctr": 0,
+            "expenses": 0
+        }, {
+            "date": "2017-11-12T10:00:00.000Z",
+            "dateGroup": "hour",
+            "viewsNotIgnored": 0,
+            "clicksPayable": 0,
+            "clicksPayableNotIgnored": 0,
+            "earnings": 0,
+            "ctr": 0,
+            "expenses": 0
+        }, {
+            "date": "2017-11-12T11:00:00.000Z",
+            "dateGroup": "hour",
+            "viewsNotIgnored": 0,
+            "clicksPayable": 0,
+            "clicksPayableNotIgnored": 0,
+            "earnings": 0,
+            "ctr": 0,
+            "expenses": 0
+        }, {
+            "date": "2017-11-12T12:00:00.000Z",
+            "dateGroup": "hour",
+            "viewsNotIgnored": 0,
+            "clicksPayable": 0,
+            "clicksPayableNotIgnored": 0,
+            "earnings": 0,
+            "ctr": 0,
+            "expenses": 0
+        }, {
+            "date": "2017-11-12T13:00:00.000Z",
+            "dateGroup": "hour",
+            "viewsNotIgnored": 0,
+            "clicksPayable": 0,
+            "clicksPayableNotIgnored": 0,
+            "earnings": 0,
+            "ctr": 0,
+            "expenses": 0
+        }, {
+            "date": "2017-11-12T14:00:00.000Z",
+            "dateGroup": "hour",
+            "viewsNotIgnored": 0,
+            "clicksPayable": 0,
+            "clicksPayableNotIgnored": 0,
+            "earnings": 0,
+            "ctr": 0,
+            "expenses": 0
+        }, {
+            "date": "2017-11-12T15:00:00.000Z",
+            "dateGroup": "hour",
+            "viewsNotIgnored": 0,
+            "clicksPayable": 0,
+            "clicksPayableNotIgnored": 0,
+            "earnings": 0,
+            "ctr": 0,
+            "expenses": 0
+        }, {
+            "date": "2017-11-12T16:00:00.000Z",
+            "dateGroup": "hour",
+            "viewsNotIgnored": 0,
+            "clicksPayable": 0,
+            "clicksPayableNotIgnored": 0,
+            "earnings": 0,
+            "ctr": 0,
+            "expenses": 0
+        }, {
+            "date": "2017-11-12T17:00:00.000Z",
+            "dateGroup": "hour",
+            "viewsNotIgnored": 0,
+            "clicksPayable": 0,
+            "clicksPayableNotIgnored": 0,
+            "earnings": 0,
+            "ctr": 0,
+            "expenses": 0
+        }, {
+            "date": "2017-11-12T18:00:00.000Z",
+            "dateGroup": "hour",
+            "viewsNotIgnored": 0,
+            "clicksPayable": 0,
+            "clicksPayableNotIgnored": 0,
+            "earnings": 0,
+            "ctr": 0,
+            "expenses": 0
+        }, {
+            "date": "2017-11-12T19:00:00.000Z",
+            "dateGroup": "hour",
+            "viewsNotIgnored": 0,
+            "clicksPayable": 0,
+            "clicksPayableNotIgnored": 0,
+            "earnings": 0,
+            "ctr": 0,
+            "expenses": 0
+        }, {
+            "date": "2017-11-12T20:00:00.000Z",
+            "dateGroup": "hour",
+            "viewsNotIgnored": 0,
+            "clicksPayable": 0,
+            "clicksPayableNotIgnored": 0,
+            "earnings": 0,
+            "ctr": 0,
+            "expenses": 0
+        }, {
+            "date": "2017-11-12T21:00:00.000Z",
+            "dateGroup": "hour",
+            "viewsNotIgnored": 0,
+            "clicksPayable": 0,
+            "clicksPayableNotIgnored": 0,
+            "earnings": 0,
+            "ctr": 0,
+            "expenses": 0
+        }, {
+            "date": "2017-11-12T22:00:00.000Z",
+            "dateGroup": "hour",
+            "viewsNotIgnored": 0,
+            "clicksPayable": 0,
+            "clicksPayableNotIgnored": 0,
+            "earnings": 0,
+            "ctr": 0,
+            "expenses": 0
+        }, {
+            "date": "2017-11-12T23:00:00.000Z",
+            "dateGroup": "hour",
+            "viewsNotIgnored": 0,
+            "clicksPayable": 0,
+            "clicksPayableNotIgnored": 0,
+            "earnings": 0,
+            "ctr": 0,
+            "expenses": 0
+        }, {
+            "date": "2017-11-13T00:00:00.000Z",
+            "dateGroup": "hour",
+            "viewsNotIgnored": 0,
+            "clicksPayable": 0,
+            "clicksPayableNotIgnored": 0,
+            "earnings": 0,
+            "ctr": 0,
+            "expenses": 0
+        }, {
+            "date": "2017-11-13T01:00:00.000Z",
+            "dateGroup": "hour",
+            "viewsNotIgnored": 0,
+            "clicksPayable": 0,
+            "clicksPayableNotIgnored": 0,
+            "earnings": 0,
+            "ctr": 0,
+            "expenses": 0
+        }, {
+            "date": "2017-11-13T02:00:00.000Z",
+            "dateGroup": "hour",
+            "viewsNotIgnored": 0,
+            "clicksPayable": 0,
+            "clicksPayableNotIgnored": 0,
+            "earnings": 0,
+            "ctr": 0,
+            "expenses": 0
+        }, {
+            "date": "2017-11-13T03:00:00.000Z",
+            "dateGroup": "hour",
+            "viewsNotIgnored": 0,
+            "clicksPayable": 0,
+            "clicksPayableNotIgnored": 0,
+            "earnings": 0,
+            "ctr": 0,
+            "expenses": 0
+        }, {
+            "date": "2017-11-13T04:00:00.000Z",
+            "dateGroup": "hour",
+            "viewsNotIgnored": 0,
+            "clicksPayable": 0,
+            "clicksPayableNotIgnored": 0,
+            "earnings": 0,
+            "ctr": 0,
+            "expenses": 0
+        }, {
+            "date": "2017-11-13T05:00:00.000Z",
+            "dateGroup": "hour",
+            "viewsNotIgnored": 0,
+            "clicksPayable": 0,
+            "clicksPayableNotIgnored": 0,
+            "earnings": 0,
+            "ctr": 0,
+            "expenses": 0
+        }, {
+            "date": "2017-11-13T06:00:00.000Z",
+            "dateGroup": "hour",
+            "viewsNotIgnored": 0,
+            "clicksPayable": 0,
+            "clicksPayableNotIgnored": 0,
+            "earnings": 0,
+            "ctr": 0,
+            "expenses": 0
+        }, {
+            "date": "2017-11-13T07:00:00.000Z",
+            "dateGroup": "hour",
+            "viewsNotIgnored": 0,
+            "clicksPayable": 0,
+            "clicksPayableNotIgnored": 0,
+            "earnings": 0,
+            "ctr": 0,
+            "expenses": 0
+        }, {
+            "date": "2017-11-13T08:00:00.000Z",
+            "dateGroup": "hour",
+            "viewsNotIgnored": 0,
+            "clicksPayable": 0,
+            "clicksPayableNotIgnored": 0,
+            "earnings": 0,
+            "ctr": 0,
+            "expenses": 0
+        }, {
+            "date": "2017-11-13T09:00:00.000Z",
+            "dateGroup": "hour",
+            "viewsAll": 329556,
+            "viewsNotIgnored": 279935,
+            "clicksPayable": 1097,
+            "clicksPayableNotIgnored": 1091,
+            "ctr": 0.22,
+            "userExpenses": 2742.5
+        }, {
+            "date": "2017-11-13T10:00:00.000Z",
+            "dateGroup": "hour",
+            "viewsAll": 556104,
+            "viewsNotIgnored": 463757,
+            "clicksPayable": 2108,
+            "clicksPayableNotIgnored": 2075,
+            "ctr": 0.2,
+            "userExpenses": 5270
+        }, {
+            "date": "2017-11-13T11:00:00.000Z",
+            "dateGroup": "hour",
+            "viewsAll": 232324,
+            "viewsNotIgnored": 188667,
+            "clicksPayable": 1135,
+            "clicksPayableNotIgnored": 1106,
+            "ctr": 0.2,
+            "userExpenses": 2837.5
+        }, {
+            "date": "2017-11-13T12:00:00.000Z",
+            "dateGroup": "hour",
+            "viewsAll": 102261,
+            "viewsNotIgnored": 79720,
+            "clicksPayable": 426,
+            "clicksPayableNotIgnored": 423,
+            "ctr": 0.18,
+            "userExpenses": 1256.5
+        }, {
+            "date": "2017-11-13T13:00:00.000Z",
+            "dateGroup": "hour",
+            "viewsAll": 344677,
+            "viewsNotIgnored": 279118,
+            "clicksPayable": 1625,
+            "clicksPayableNotIgnored": 1589,
+            "ctr": 0.19,
+            "userExpenses": 4873
+        }, {
+            "date": "2017-11-13T14:00:00.000Z",
+            "dateGroup": "hour",
+            "viewsAll": 86943,
+            "viewsNotIgnored": 81996,
+            "clicksPayable": 170,
+            "clicksPayableNotIgnored": 170,
+            "ctr": 0.19,
+            "userExpenses": 509.5
+        }, {
+            "date": "2017-11-13T15:00:00.000Z",
+            "dateGroup": "hour",
+            "viewsAll": 123045,
+            "viewsNotIgnored": 116861,
+            "clicksPayable": 168,
+            "clicksPayableNotIgnored": 166,
+            "ctr": 0.15,
+            "userExpenses": 504
+        }, {
+            "date": "2017-11-13T16:00:00.000Z",
+            "dateGroup": "hour",
+            "viewsAll": 124837,
+            "viewsNotIgnored": 117965,
+            "clicksPayable": 157,
+            "clicksPayableNotIgnored": 156,
+            "ctr": 0.14,
+            "userExpenses": 470.5
+        }, {
+            "date": "2017-11-13T17:00:00.000Z",
+            "dateGroup": "hour",
+            "viewsAll": 109477,
+            "viewsNotIgnored": 102774,
+            "clicksPayable": 136,
+            "clicksPayableNotIgnored": 135,
+            "ctr": 0.15,
+            "userExpenses": 408
+        }, {
+            "date": "2017-11-13T18:00:00.000Z",
+            "dateGroup": "hour",
+            "viewsAll": 80150,
+            "viewsNotIgnored": 73419,
+            "clicksPayable": 123,
+            "clicksPayableNotIgnored": 123,
+            "ctr": 0.18,
+            "userExpenses": 369
+        }, {
+            "date": "2017-11-13T19:00:00.000Z",
+            "dateGroup": "hour",
+            "viewsAll": 57938,
+            "viewsNotIgnored": 52529,
+            "clicksPayable": 89,
+            "clicksPayableNotIgnored": 89,
+            "ctr": 0.19,
+            "userExpenses": 267
+        }, {
+            "date": "2017-11-13T20:00:00.000Z",
+            "dateGroup": "hour",
+            "viewsAll": 54165,
+            "viewsNotIgnored": 47711,
+            "clicksPayable": 116,
+            "clicksPayableNotIgnored": 115,
+            "ctr": 0.23,
+            "userExpenses": 348
+        }, {
+            "date": "2017-11-13T21:00:00.000Z",
+            "dateGroup": "hour",
+            "viewsAll": 32501,
+            "viewsNotIgnored": 28601,
+            "clicksPayable": 79,
+            "clicksPayableNotIgnored": 79,
+            "ctr": 0.28,
+            "userExpenses": 237
+        }, {
+            "date": "2017-11-13T22:00:00.000Z",
+            "dateGroup": "hour",
+            "viewsAll": 28989,
+            "viewsNotIgnored": 25251,
+            "clicksPayable": 60,
+            "clicksPayableNotIgnored": 58,
+            "ctr": 0.24,
+            "userExpenses": 178.5
+        }, {
+            "date": "2017-11-13T23:00:00.000Z",
+            "dateGroup": "hour",
+            "viewsAll": 31532,
+            "viewsNotIgnored": 26912,
+            "clicksPayable": 82,
+            "clicksPayableNotIgnored": 82,
+            "ctr": 0.27,
+            "userExpenses": 245
+        }, {
+            "date": "2017-11-14T00:00:00.000Z",
+            "dateGroup": "hour",
+            "viewsAll": 35700,
+            "viewsNotIgnored": 29912,
+            "clicksPayable": 92,
+            "clicksPayableNotIgnored": 92,
+            "ctr": 0.24,
+            "userExpenses": 274.5
+        }, {
+            "date": "2017-11-14T01:00:00.000Z",
+            "dateGroup": "hour",
+            "viewsAll": 47971,
+            "viewsNotIgnored": 39408,
+            "clicksPayable": 127,
+            "clicksPayableNotIgnored": 126,
+            "ctr": 0.26,
+            "userExpenses": 377.5
+        }, {
+            "date": "2017-11-14T02:00:00.000Z",
+            "dateGroup": "hour",
+            "viewsAll": 74409,
+            "viewsNotIgnored": 62111,
+            "clicksPayable": 197,
+            "clicksPayableNotIgnored": 196,
+            "ctr": 0.23,
+            "userExpenses": 584
+        }, {
+            "date": "2017-11-14T03:00:00.000Z",
+            "dateGroup": "hour",
+            "viewsAll": 111806,
+            "viewsNotIgnored": 93560,
+            "clicksPayable": 316,
+            "clicksPayableNotIgnored": 301,
+            "ctr": 0.28,
+            "userExpenses": 932.5
+        }, {
+            "date": "2017-11-14T04:00:00.000Z",
+            "dateGroup": "hour",
+            "viewsAll": 162707,
+            "viewsNotIgnored": 135395,
+            "clicksPayable": 422,
+            "clicksPayableNotIgnored": 416,
+            "ctr": 0.27,
+            "userExpenses": 1236.5
+        }, {
+            "date": "2017-11-14T05:00:00.000Z",
+            "dateGroup": "hour",
+            "viewsAll": 201183,
+            "viewsNotIgnored": 170457,
+            "clicksPayable": 454,
+            "clicksPayableNotIgnored": 451,
+            "ctr": 0.25,
+            "userExpenses": 1319
+        }, {
+            "date": "2017-11-14T06:00:00.000Z",
+            "dateGroup": "hour",
+            "viewsAll": 247134,
+            "viewsNotIgnored": 210154,
+            "clicksPayable": 465,
+            "clicksPayableNotIgnored": 459,
+            "ctr": 0.22,
+            "userExpenses": 1342
+        }, {
+            "date": "2017-11-14T07:00:00.000Z",
+            "dateGroup": "hour",
+            "viewsAll": 280036,
+            "viewsNotIgnored": 234699,
+            "clicksPayable": 617,
+            "clicksPayableNotIgnored": 608,
+            "ctr": 0.22,
+            "userExpenses": 1770
+        }, {
+            "date": "2017-11-14T08:00:00.000Z",
+            "dateGroup": "hour",
+            "viewsAll": 231165,
+            "viewsNotIgnored": 199301,
+            "clicksPayable": 474,
+            "clicksPayableNotIgnored": 472,
+            "ctr": 0.26,
+            "userExpenses": 1356.5
+        }, {
+            "date": "2017-11-14T09:00:00.000Z",
+            "dateGroup": "hour",
+            "viewsAll": 283285,
+            "viewsNotIgnored": 250620,
+            "clicksPayable": 554,
+            "clicksPayableNotIgnored": 547,
+            "ctr": 0.24,
+            "userExpenses": 1565
+        }, {
+            "date": "2017-11-14T10:00:00.000Z",
+            "dateGroup": "hour",
+            "viewsAll": 201041,
+            "viewsNotIgnored": 181759,
+            "clicksPayable": 364,
+            "clicksPayableNotIgnored": 364,
+            "ctr": 0.2,
+            "userExpenses": 915
+        }, {
+            "date": "2017-11-14T11:00:00.000Z",
+            "dateGroup": "hour",
+            "viewsAll": 170849,
+            "viewsNotIgnored": 148359,
+            "clicksPayable": 274,
+            "clicksPayableNotIgnored": 272,
+            "ctr": 0.19,
+            "userExpenses": 686.5
+        }, {
+            "date": "2017-11-14T12:00:00.000Z",
+            "dateGroup": "hour",
+            "viewsAll": 173395,
+            "viewsNotIgnored": 152846,
+            "clicksPayable": 295,
+            "clicksPayableNotIgnored": 293,
+            "ctr": 0.22,
+            "userExpenses": 737.5
+        }, {
+            "date": "2017-11-14T13:00:00.000Z",
+            "dateGroup": "hour",
+            "viewsAll": 148168,
+            "viewsNotIgnored": 134438,
+            "clicksPayable": 246,
+            "clicksPayableNotIgnored": 244,
+            "ctr": 0.21,
+            "userExpenses": 615
+        }, {
+            "date": "2017-11-14T14:00:00.000Z",
+            "dateGroup": "hour",
+            "viewsAll": 157383,
+            "viewsNotIgnored": 138272,
+            "clicksPayable": 328,
+            "clicksPayableNotIgnored": 327,
+            "ctr": 0.24,
+            "userExpenses": 820
+        }, {
+            "date": "2017-11-14T15:00:00.000Z",
+            "dateGroup": "hour",
+            "viewsAll": 146674,
+            "viewsNotIgnored": 130149,
+            "clicksPayable": 315,
+            "clicksPayableNotIgnored": 315,
+            "ctr": 0.24,
+            "userExpenses": 867.5
+        }, {
+            "date": "2017-11-14T16:00:00.000Z",
+            "dateGroup": "hour",
+            "viewsAll": 0,
+            "viewsNotIgnored": 0,
+            "clicksPayable": 7,
+            "clicksPayableNotIgnored": 7,
+            "ctr": 0,
+            "userExpenses": 21
+        }, {
+            "date": "2017-11-14T17:00:00.000Z",
+            "dateGroup": "hour",
+            "viewsAll": 0,
+            "viewsNotIgnored": 0,
+            "clicksPayable": 3,
+            "clicksPayableNotIgnored": 3,
+            "ctr": 0,
+            "userExpenses": 9
+        }, {
+            "date": "2017-11-14T18:00:00.000Z",
+            "dateGroup": "hour",
+            "viewsAll": 0,
+            "viewsNotIgnored": 0,
+            "clicksPayable": 3,
+            "clicksPayableNotIgnored": 3,
+            "ctr": 0,
+            "userExpenses": 9
+        }, {
+            "date": "2017-11-14T19:00:00.000Z",
+            "dateGroup": "hour",
+            "viewsNotIgnored": 0,
+            "clicksPayable": 0,
+            "clicksPayableNotIgnored": 0,
+            "earnings": 0,
+            "ctr": 0,
+            "expenses": 0
+        }, {
+            "date": "2017-11-14T20:00:00.000Z",
+            "dateGroup": "hour",
+            "viewsNotIgnored": 0,
+            "clicksPayable": 0,
+            "clicksPayableNotIgnored": 0,
+            "earnings": 0,
+            "ctr": 0,
+            "expenses": 0
+        }];
+
+        const isFloatItem = (item) => {
+            // array of floating items
+            const floatingItems = ['rates.ctr', `rates.${expensesKey}`];
+            return floatingItems.indexOf(item.graph.id) > -1;
+        };
+
+
+        function bigNumber(input, format) {
+            // Non-numeric value cannot be formatted
+            if (!input || !/^-?[0-9\.]+$/.test(input)) {
+                return input;
+            }
+
+            // Less than 1000 cannot have float part
+            if (format && /\.00\s*a/.test(format) && !/[0-9]+\.[0-9]+/.test(input) && input < 1000 && input > -1000) {
+                return input;
+            }
+            return input;
+        };
+
+
+        /**
+         * Render chart ballon text
+         * @param item
+         * @param legend
+         */
+        const balloonFormat = (item, legend) => {
+            let period = '';
+            if (angular.isDefined(item.dataContext.dateGroup)) {
+                switch (item.dataContext.dateGroup) {
+                    case 'day':
+                        period = moment(item.category).format('DD MMMM');
+                        break;
+                    case 'week':
+                        period = item.category;
+                        break;
+                    case 'month':
+                        period = moment(item.category).format('MMMM YYYY');
+                        break;
+                    default:
+                        period = moment(item.category).format('DD MMM HH:mm');
+                }
+            }
+            return `${period}<br/>
+                        ${legend.title}: <b>
+                        ${bigNumber(item.values.value, item.values.value >= 1000 || isFloatItem(item) > -1 ? '0.00 a' : '0')}
+                        ${(item.graph.id == 'rates.ctr' ? ' %' : '')}</b>`;
+        };
+
+
+        let minPeriod = "hh";
+        let categoryField = "date";
+        let labelFrequency = 1;
+        let markPeriodChange = true;
+        let expensesKey = '';
+
+        if (items.length > 0 && angular.isDefined(items[0].dateGroup)) {
+            switch (items[0].dateGroup) {
+                case 'day':
+                    minPeriod = "DD";
+                    markPeriodChange = false;
+                    break;
+                case 'week':
+                    categoryField = "datePeriod";
+                    labelFrequency = 2;
+                    markPeriodChange = false;
+                    break;
+                case 'month':
+                    minPeriod = "MM";
+                    markPeriodChange = false;
+                    break;
+            }
+        }
+
+        const chart = {
+            export: {
+                enabled: true
+            },
+            color: "#737373",
+            chartCursor: {
+                enabled: true,
+                animationDuration: 0,
+                bulletsEnabled: true,
+                bulletSize: 5,
+                categoryBalloonEnabled: false,
+                cursorAlpha: 0,
+                valueLineAlpha: 0.2,
+                zoomable: false
+            },
+            trendLines: [],
+            guides: [],
+            balloon: {
+                borderThickness: 1,
+                disableMouseEvents: false,
+                fixedPosition: false,
+                pointerWidth: 7,
+                textAlign: "left"
+            },
+            isEmptyData: false,
+            allLabels: [{
+                "text": "Переходы",
+                "x": 70,
+                "y": 0,
+                size: 13,
+                color: '#000'
+            }, {
+                text: "Показы",
+                "x": 17,
+                "y": 0,
+                size: 13,
+                color: '#000'
+            }, {
+                "text": "CTR, %",
+                "x": '94%',
+                "y": 0,
+                size: 13,
+                color: '#000'
+            }],
+            valueAxes: [{
+                id: "axisViews",
+                "axisAlpha": 0,
+                "gridAlpha": 1,
+                "gridColor": "#EBEBEB",
+                offset: 70,
+                title: ""
+            }, {
+                "axisAlpha": 0,
+                "gridAlpha": 1,
+                "gridColor": "#EBEBEB",
+                id: "axisClicks",
+                title: ""
+            }, {
+                "gridAlpha": 1,
+                "gridColor": "#EBEBEB",
+                id: "axisCtr",
+                position: "right",
+                axisAlpha: 0,
+                title: ""
+            }],
+            fontFamily: 'Ubuntu',
+            type: "serial",
+            header: 0,
+            marginTop: 40,
+            marginRight: 65,
+            marginBottom: 30,
+            marginLeft: 142,
+            theme: "light",
+            render: {
+                columns: 12
+            },
+            synchronizeGrid: true,
+            autoMargins: false,
+            autoDisplay: true,
+            decimalSeparator: ',',
+            precision: 2,
+            thousandsSeparator: " ",
+            usePrefixes: true,
+            categoryField: categoryField,
+            categoryAxis: {
+                equalSpacing: true,
+                minPeriod: minPeriod,
+                parseDates: (categoryField == "date" ? true : false),
+                startOnAxis: true,
+                axisColor: "#ebebeb",
+                minorGridEnabled: true,
+                labelFrequency: labelFrequency,
+                markPeriodChange: markPeriodChange,
+                dateFormats: [{
+                    "period": "fff",
+                    "format": "JJ:NN:SS"
+                }, {
+                    "period": "ss",
+                    "format": "JJ:NN:SS"
+                }, {
+                    "period": "mm",
+                    "format": "JJ:NN"
+                }, {
+                    "period": "hh",
+                    "format": "JJ:NN"
+                }, {
+                    "period": "DD",
+                    "format": "DD MMM"
+                }, {
+                    "period": "WW",
+                    "format": "MMM DD"
+                }, {
+                    "period": "MM",
+                    "format": "MMM YYYY"
+                }, {
+                    "period": "YYYY",
+                    "format": "YYYY"
+                }]
+            },
+            graphs: [{
+                id: "rates.clicksPayable",
+                lineThickness: 2,
+                title: "Переходы",
+                type: "smoothedLine",
+                valueAxis: "axisClicks",
+                valueField: "clicksPayable",
+                balloonFunction: balloonFormat,
+                lineColor: "#76b2da"
+            }, {
+                id: "rates.viewsNotIgnored",
+                lineThickness: 2,
+                title: "Показы",
+                type: "smoothedLine",
+                valueAxis: "axisViews",
+                valueField: "viewsNotIgnored",
+                balloonFunction: balloonFormat,
+                lineColor: "#faba5d"
+            }, {
+                id: "rates.ctr",
+                lineThickness: 2,
+                title: "CTR, %",
+                type: "smoothedLine",
+                valueAxis: "axisCtr",
+                valueField: "ctr",
+                balloonFunction: balloonFormat,
+                lineColor: "#89d393"
+            }],
+            legend: {
+                enabled: true,
+                align: "center",
+                equalWidths: false,
+                "position": "absolute",
+                "top": -22,
+                switchType: "v",
+                textClickEnabled: false,
+                valueAlign: "left",
+                valueText: null,
+                color: "#737373",
+                fontSize: 14,
+                spacing: 10,
+                listeners: []
+            },
+            dataProvider: items,
+            dataDateFormat: "YYYY-MM-DD JJ:NN",
+            path: "https://www.amcharts.com/lib/3/"
+        };
+
+
+        function setLabelVisibility() {
+            chart.legend.legendData.forEach((leg, index) => {
+                chart.api.labels[index].attr({opacity: leg.hidden ? 0 : 1});
+            });
+        }
+
+
+        chart.marginRight = 155;
+        chart.valueAxes[2].offset = 89;
+        chart.allLabels.push({
+            "text": "Расход",
+            "x": '85%',
+            "y": 0,
+            size: 13,
+            color: '#000'
+        });
+        chart.valueAxes.push({
+            id: "axisExpenses",
+            position: "right",
+            offset: 0,
+            axisAlpha: 0,
+            "gridAlpha": 1,
+            "gridColor": "#EBEBEB",
+            title: ""
+        });
+        chart.graphs.push({
+            id: `rates.userExpenses`,
+            lineThickness: 2,
+            title: "Расход",
+            type: "smoothedLine",
+            valueAxis: "axisExpenses",
+            valueField: 'userExpenses',
+            balloonFunction: balloonFormat,
+            lineColor: "#ef95ac"
+        });
+
+
+        AmCharts.makeChart("chartdiv", chart);
+    }
+</script>
+
+</body>
+</html>
